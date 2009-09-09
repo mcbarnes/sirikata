@@ -31,6 +31,7 @@
  */
 
 #include <oh/Platform.hpp>
+#include <oh/ModelsSystemFactory.hpp> // MCB:
 #include <util/RoutableMessageHeader.hpp>
 #include <options/Options.hpp>
 #include <util/PluginManager.hpp>
@@ -218,6 +219,18 @@ int main ( int argc,const char**argv ) {
         return 1;
     }
 
+    // MCB: seems like a good place to initialize models system
+    ModelsSystem* mm ( ModelsSystemFactory::getSingleton ().getConstructor ( "colladamodels" ) ( provider, String ( "--todo" ) ) );
+
+    if ( mm )
+    {
+        SILOG(cppoh,info,"Created ModelsSystemFactory ");
+    }
+    else
+    {
+        SILOG(cppoh,error,"Failed to create ModelsSystemFactory ");
+    }
+    
     TransferManager *tm;
     try {
         tm = initializeTransferManager((*transferOptions)["cdn"], eventManager);
