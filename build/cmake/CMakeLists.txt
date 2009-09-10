@@ -960,7 +960,6 @@ SET(LIBOH_SOURCES
                   ${LIBOH_SOURCE_DIR}/SimulationFactory.cpp
                   ${LIBOH_SOURCE_DIR}/ObjectScriptManagerFactory.cpp
                   ${LIBOH_SOURCE_DIR}/ModelsSystemFactory.cpp
-                  ${LIBOH_SOURCE_DIR}/models/MeshObject.cpp
                    )
 
 SET(SPACE_SOURCES ${SPACE_SOURCE_DIR}/main.cpp )
@@ -1311,6 +1310,7 @@ SET(LIBOH_PLUGIN_COLLADAMODELS_DIR ${LIBOH_PLUGIN_DIR}/collada)
 SET(LIBOH_PLUGIN_COLLADAMODELS_SOURCES
  ${LIBOH_PLUGIN_COLLADAMODELS_DIR}/ColladaPlugin.cpp
  ${LIBOH_PLUGIN_COLLADAMODELS_DIR}/ColladaSystem.cpp
+ ${LIBOH_PLUGIN_COLLADAMODELS_DIR}/ColladaMeshObject.cpp
     )
 
 IF(OpenCOLLADA_FOUND)
@@ -1320,6 +1320,7 @@ ADD_PLUGIN_TARGET(colladamodels
                     TARGET_LDFLAGS ${OpenCOLLADA_LDFLAGS} ${sirikata_LDFLAGS}
                     TARGET_LIBRARIES ${SIRIKATA_OH_LIB} ${SIRIKATA_CORE_LIB}
                     LIBRARIES ${OpenCOLLADA_LIBRARIES})
+SET(PLUGIN_INSTALL_LIST ${PLUGIN_INSTALL_LIST} colladamodels)
 ENDIF(OpenCOLLADA_FOUND)
 
 #binaries
